@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const UserDeckDisplay = ({ deck }) => {
+const UserDeckDisplay = ({ userDeck }) => {
     return (
-        <h1>{deck}</h1>
+        <h1>{userDeck}</h1>
     )
 }
 

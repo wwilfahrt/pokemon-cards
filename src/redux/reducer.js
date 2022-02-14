@@ -8,7 +8,6 @@ const addToDeckReducer = createSlice({
     reducers: {
         addToDeck: (state, action) => {
             state.deck = [...state.deck, action.payload];
-            console.log(state.deck);
             console.log(action.payload);
         },
     },
