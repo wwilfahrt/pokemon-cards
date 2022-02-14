@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap');
+
+body {
+  font-family: 'Gothic A1', sans-serif;
+  margin: 10px;
+}
+nav ul {
+    display: flex;
+    font-size: 20px;
+    background-color: white;
+    color: white;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    color: white;
+  }
+  
+  nav a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 1rem;
+  }
