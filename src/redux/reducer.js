@@ -7,7 +7,7 @@ const addToDeckReducer = createSlice({
     initialState,
     reducers: {
         addToDeck: (state, action) => {
-            state.deck = state.deck.push(action.payload);
+            state.deck = [...state.deck, action.payload];
             console.log(state.deck);
             console.log(action.payload);
         },
