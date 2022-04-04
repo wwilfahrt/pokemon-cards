@@ -144,7 +144,7 @@ const PokemonCards = (props) => {
                 />
                 {clickedCard[pokemon.id] && <SingleCardModal show={showModal} handleClose={closeModal} pokemonId={pokemon.id} pokemon={pokemon} />}
             </CardActionArea>
-            <Button id={pokemon.id} value={pokemon.name} onClick={(event) => add(event)}>Add to Deck</Button>
+            <Button id={pokemon.id} value={pokemon.id} onClick={(event) => add(event)}>Add to Deck</Button>
           </Card>
         </Grid>)}
       </Grid>
