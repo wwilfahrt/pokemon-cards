@@ -1,25 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap');
+*{
+  font-family: 'Press Start 2P', cursive;
+}
 
 body {
-  font-family: 'Gothic A1', sans-serif;
   margin: 10px;
 }
-nav ul {
+img {
+  display: flex;
+  margin-left: auto;
+}
+ nav ul {
     display: flex;
     font-size: 20px;
-    background-color: white;
-    color: white;
-    justify-content: center;
+    justify-content: right;
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
   nav li {
-    color: white;
+    display: inline;
+    border: solid black;
+    border-width: 2px 2px 0 2px;
+    border-radius: 5px 30px 0 0;
+    padding: 10px;
+    margin: 5px;
   }
   
-  nav a {
+  nav li Link {
     text-decoration: none;
     display: inline-block;
-    padding: 1rem;
+    padding: 5px 10px;
   }

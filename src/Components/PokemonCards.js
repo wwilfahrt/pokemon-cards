@@ -1,10 +1,12 @@
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Grid, Button, Card, CardMedia, Typography, CardActionArea, FormControl, Select, MenuItem, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { Grid, Button, Card, CardMedia, Typography, CardActionArea, FormControl, Select, MenuItem, Box, RadioGroup } from '@mui/material';
 import SingleCardModal from './SingleCardModal';
 import './PokemonCards.css'
 import SearchBar from './SearchBar';
 import { addToDeck } from '../redux/reducer';
+import logo from '../assets/logo.png';
 
 const PokemonCards = (props) => {
   const dispatch = useDispatch();
@@ -80,20 +82,30 @@ const PokemonCards = (props) => {
       dispatch(addToDeck(event.target.value));
   };
 
+  const handleRadioChange = e => {
+    setSortBy(e.target.value)
+  }
+
   return (
     <div>
+      <Box 
+        className="content"
+        display="inline-flex" 
+        alignItems="center"
+        justifyContent="center">
+        <img src={logo} alt="pokemon logo" height="auto" width="175px" />
         <SearchBar
             value={query}
             onChange={(event) => {
                 setQuery(event.target.value);
             }}
         />
-        <FormControl sx={{width: "20%", padding: "20px"}} >
+        <FormControl sx={{width: "20%", paddingBottom: "20px"}} >
         <div>
         <Typography>Type:</Typography>
         <Select
             label="Type"
-            defaultValue="alphabetical"
+            defaultValue="All"
             value={type}
             onChange={(event) => {
                 setType(event.target.value);
@@ -108,35 +120,35 @@ const PokemonCards = (props) => {
         </div>
         </FormControl>
         <FormControl>
-        <FormLabel>Sort By:</FormLabel>
-        <RadioGroup
-            name="sort"
-            value={sortBy}
-            onChange={(event => {
-                setSortBy(event.target.value);
-            })}
-        >
-            <FormControlLabel value="alphabetical" control={<Radio />} label="A-Z" />
-            <FormControlLabel value="numerical" control={<Radio />} label="PokeDex No." />
-        </RadioGroup>
-        </FormControl>
-        <Grid container spacing={4}
+          <RadioGroup>
+            <label>
+              <input type="radio" name="radio" value="alphabetical" onChange={handleRadioChange} />
+            <span>A-Z</span>
+            </label>
+            <label>
+              <input type="radio" name="radio" value="numerical" onChange={handleRadioChange} />
+            <span>PokeDex No.</span>
+            </label>
+            </RadioGroup>
+          </FormControl> 
+      </Box>       
+        <Grid container spacing={3}
+            display="flex"
+            flex-direction="column"
             direction="row"
-            justifyContent="space=evenly"
-            alignItems="center"
         >
             {sortedPokemon.map(pokemon =>
-            <Grid 
-                item 
-                xs={4} sm={3} md={1.5} 
+            <Grid
+              item 
+              xs={6} sm={4} md={2}
                 key={pokemon.id}
             >
-            <Card variant="outlined" >
+            <Card variant="outlined" sx={{ borderRadius: '16px' }} >
                 <CardActionArea 
                     onClick={() => {
                         modalHandler(pokemon.id)
                     }}>
-                <Typography variant="h6" textAlign="center" >{pokemon.name}</Typography>
+                <Typography variant="h6" textAlign="center" padding="10px" >{pokemon.name}</Typography>
                 <CardMedia
                     component="img"
                     image={pokemon.sprites.front_default}
@@ -144,7 +156,9 @@ const PokemonCards = (props) => {
                 />
                 {clickedCard[pokemon.id] && <SingleCardModal show={showModal} handleClose={closeModal} pokemonId={pokemon.id} pokemon={pokemon} />}
             </CardActionArea>
-            <Button id={pokemon.id} value={pokemon.id} onClick={(event) => add(event)}>Add to Deck</Button>
+            <Box textAlign="center">
+            <Button size="medium" startIcon={<AddCircleTwoToneIcon />} id={pokemon.id} value={pokemon.id} onClick={(event) => add(event)}>Add to Deck</Button>
+            </Box>
           </Card>
         </Grid>)}
       </Grid>

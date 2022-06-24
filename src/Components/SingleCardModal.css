@@ -1,5 +1,9 @@
+*{
+    font-family: 'Press Start 2P', cursive;
+}
+
 .modal {
-    height: 300px;
+    height: 400px;
     width: 300px;
     position: absolute;
     left: 50%;
