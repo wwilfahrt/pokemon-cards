@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = { deck: []};
 
-const addToDeckReducer = createSlice({
+const deckSlice = createSlice({
     name: "deck",
     initialState,
     reducers: {
@@ -13,5 +13,5 @@ const addToDeckReducer = createSlice({
     },
 });
 
-export const { addToDeck } = addToDeckReducer.actions;
-export const reducer = addToDeckReducer.reducer;
+export const { addToDeck } = deckSlice.actions;
+export const reducer = deckSlice.reducer;
