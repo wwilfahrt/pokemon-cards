@@ -5,7 +5,7 @@ import { Grid, Button, Card, CardMedia, Typography, CardActionArea, FormControl,
 import SingleCardModal from './SingleCardModal';
 import './PokemonCards.css'
 import SearchBar from './SearchBar';
-import { addToDeck } from '../redux/reducer';
+import { addToDeck } from '../redux/deckSlice';
 import logo from '../assets/logo.png';
 
 const PokemonCards = (props) => {
@@ -157,7 +157,7 @@ const PokemonCards = (props) => {
                 {clickedCard[pokemon.id] && <SingleCardModal show={showModal} handleClose={closeModal} pokemonId={pokemon.id} pokemon={pokemon} />}
             </CardActionArea>
             <Box textAlign="center">
-            <Button size="medium" startIcon={<AddCircleTwoToneIcon />} id={pokemon.id} value={pokemon.id} onClick={(event) => add(event)}>Add to Deck</Button>
+            <Button size="medium" startIcon={<AddCircleTwoToneIcon />} id={pokemon.id} value={pokemon.id} onClick={add(pokemon)}>Add to Deck</Button>
             </Box>
           </Card>
         </Grid>)}
