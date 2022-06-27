@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from './reducer';
+import { addToDeck } from './deckSlice';
 
 const store = configureStore({
-    reducer: reducer,
+    reducer: addToDeck,
 });
 
 export default store;

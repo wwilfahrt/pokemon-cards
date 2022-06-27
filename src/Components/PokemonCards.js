@@ -4,7 +4,12 @@ import { Grid, Button, Card, CardMedia, Typography, CardActionArea, FormControl,
 import SingleCardModal from './SingleCardModal';
 import './PokemonCards.css'
 import SearchBar from './SearchBar';
+<<<<<<< Updated upstream
 import { addToDeck } from '../redux/reducer';
+=======
+import { addToDeck } from '../redux/deckSlice';
+import logo from '../assets/logo.png';
+>>>>>>> Stashed changes
 
 const PokemonCards = (props) => {
   const dispatch = useDispatch();
@@ -144,7 +149,13 @@ const PokemonCards = (props) => {
                 />
                 {clickedCard[pokemon.id] && <SingleCardModal show={showModal} handleClose={closeModal} pokemonId={pokemon.id} pokemon={pokemon} />}
             </CardActionArea>
+<<<<<<< Updated upstream
             <Button id={pokemon.id} value={pokemon.id} onClick={(event) => add(event)}>Add to Deck</Button>
+=======
+            <Box textAlign="center">
+            <Button size="medium" startIcon={<AddCircleTwoToneIcon />} id={pokemon.id} value={pokemon.id} onClick={add(pokemon)}>Add to Deck</Button>
+            </Box>
+>>>>>>> Stashed changes
           </Card>
         </Grid>)}
       </Grid>
