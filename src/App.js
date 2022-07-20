@@ -7,12 +7,13 @@ import UserDeckDisplay from './Components/UserDeckDisplay';
 
 function App() {
   return (
+    
     <div>
             <Navbar />
             <div className="content">
             <Routes>
-                <Route path="/" element={<PokemonCardsContainer />}></Route>
-                <Route path="/mydeck" element={<UserDeckDisplay />}></Route>
+                <Route exact path="/" element={<PokemonCardsContainer />}></Route>
+                <Route exact path="/mydeck" element={<UserDeckDisplay />}></Route>
             </Routes>
             </div>
         </div>

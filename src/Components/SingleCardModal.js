@@ -1,31 +1,30 @@
 import React from 'react';
 import './SingleCardModal.css';
-import { Modal, Button, Card, CardMedia, Typography } from '@mui/material';
+import { Button, Modal } from 'react-bootstrap';
 
 const SingleCardModal = (props) => {
-    const showHideClassName = props.show ? "modal display-block" : "modal display-none";
+    /* const showHideClassName = props.show ? "modal display-block" : "modal display-none"; */
 
     const pokemon = props.pokemon;
 
     return (
-        <div className={showHideClassName}>
-            <Modal 
-            open={props.show}>
-                <Card className="modal" >
-                <Button type="button" sx={{ backgroundColor: 'white' }} onClick={props.handleClose}>
-                  Close
-                </Button>
-                <Typography>{pokemon.name}</Typography>
-                <Typography>Height: {pokemon.height}cm</Typography>
-                <Typography>{pokemon.types.name}</Typography>
-                <CardMedia
-                    component="img"
-                    image={pokemon.sprites.front_default}
+            <Modal>
+            <Modal.Header />
+            <Modal.Body>
+                <p>{pokemon.name}</p>
+                <p>Height: {pokemon.height}cm</p>
+                <p>{pokemon.types.name}</p>
+                <img
+                    src={pokemon.sprites.front_default}
                     alt={pokemon.name}
                 />
-                </Card>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={props.handleClose}>
+                  Close
+                </Button>
+            </Modal.Footer>
             </Modal>
-        </div>
     )
 }
 export default SingleCardModal;

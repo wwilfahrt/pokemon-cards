@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Grid, Button, Card, CardMedia, Typography, CardActionArea, FormControl, Select, MenuItem, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import SingleCardModal from './SingleCardModal';
+import { Row, Col, Container, ButtonGroup, ToggleButton, Form } from 'react-bootstrap';
+import { Typography, FormControl, Select, option } from '@mui/material';
+import SingleCard from './SingleCard';
 import './PokemonCards.css'
 import SearchBar from './SearchBar';
-<<<<<<< Updated upstream
-import { addToDeck } from '../redux/reducer';
-=======
-import { addToDeck } from '../redux/deckSlice';
+import { addToDeck } from '../redux/myDeckSlice';
 import logo from '../assets/logo.png';
->>>>>>> Stashed changes
+import 'bootstrap/dist/css/bootstrap.css';
 
 const PokemonCards = (props) => {
-  const dispatch = useDispatch();
   const [query, setQuery] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [clickedCard, setClickedCard] = useState({});
   const [type, setType] = useState("");
   const [sortBy, setSortBy] = useState("");
   
   const pokemonList = props.pokemonList;
+
 
   const getSearchedPokemon = (query, pokemonList) => {
     if (!query) {
@@ -68,100 +63,70 @@ const PokemonCards = (props) => {
 
   const sortedPokemon = getSortedPokemon(sortBy, filteredPokemon);
 
-  const modalHandler = (id) => {
-      setClickedCard(state => ({
-          ...state,
-          [id] : !state[id]
-      })
-      )
-      setShowModal(true);
+  const handleRadioChange = e => {
+    setSortBy(e.target.value)
   }
-
-  const closeModal = () => {
-      setShowModal(false);
-  }
-
-  const add = (event) => {
-      dispatch(addToDeck(event.target.value));
-  };
 
   return (
     <div>
+      <Container fluid>
+        <Row>
+        <Col>
+        <img src={logo} alt="pokemon logo" height="auto" width="175px" />
+        </Col>
+        </Row>
+        <Row>
+        <Col>
         <SearchBar
-            value={query}
+            query={query}
             onChange={(event) => {
                 setQuery(event.target.value);
             }}
         />
-        <FormControl sx={{width: "20%", padding: "20px"}} >
-        <div>
-        <Typography>Type:</Typography>
-        <Select
-            label="Type"
-            defaultValue="alphabetical"
-            value={type}
-            onChange={(event) => {
-                setType(event.target.value);
-            }}
+        </Col>
+        <Col>
+        <h6>Type:</h6>
+        <Form.Select
+          sx={{width: "20%", paddingBottom: "20px"}}
+          value={type}
+          onChange={(event) => {
+            setType(event.target.value);
+          }} 
         >
-            <MenuItem value="All" >All</MenuItem>
-            <MenuItem value="normal" >Normal</MenuItem>
-            <MenuItem value="fire" >Fire</MenuItem>
-            <MenuItem value="water" >Water</MenuItem>
-            <MenuItem value="grass" >Grass</MenuItem>
-        </Select>
-        </div>
-        </FormControl>
-        <FormControl>
-        <FormLabel>Sort By:</FormLabel>
-        <RadioGroup
-            name="sort"
-            value={sortBy}
-            onChange={(event => {
-                setSortBy(event.target.value);
-            })}
-        >
-            <FormControlLabel value="alphabetical" control={<Radio />} label="A-Z" />
-            <FormControlLabel value="numerical" control={<Radio />} label="PokeDex No." />
-        </RadioGroup>
-        </FormControl>
-        <Grid container spacing={4}
-            direction="row"
-            justifyContent="space=evenly"
-            alignItems="center"
-        >
-            {sortedPokemon.map(pokemon =>
-            <Grid 
-                item 
-                xs={4} sm={3} md={1.5} 
-                key={pokemon.id}
-            >
-            <Card variant="outlined" >
-                <CardActionArea 
-                    onClick={() => {
-                        modalHandler(pokemon.id)
-                    }}>
-                <Typography variant="h6" textAlign="center" >{pokemon.name}</Typography>
-                <CardMedia
-                    component="img"
-                    image={pokemon.sprites.front_default}
-                    alt={pokemon.name}
-                />
-                {clickedCard[pokemon.id] && <SingleCardModal show={showModal} handleClose={closeModal} pokemonId={pokemon.id} pokemon={pokemon} />}
-            </CardActionArea>
-<<<<<<< Updated upstream
-            <Button id={pokemon.id} value={pokemon.id} onClick={(event) => add(event)}>Add to Deck</Button>
-=======
-            <Box textAlign="center">
-            <Button size="medium" startIcon={<AddCircleTwoToneIcon />} id={pokemon.id} value={pokemon.id} onClick={add(pokemon)}>Add to Deck</Button>
-            </Box>
->>>>>>> Stashed changes
-          </Card>
-        </Grid>)}
-      </Grid>
+            <option value="All" >All</option>
+            <option value="normal" >Normal</option>
+            <option value="fire" >Fire</option>
+            <option value="water" >Water</option>
+            <option value="grass" >Grass</option>
+        </Form.Select>
+        </Col>
+        <Col>
+          <ButtonGroup>
+              <h6>Sort by:</h6>
+              <ToggleButton type="radio" name="radio" value="alphabetical" onChange={handleRadioChange} >
+                A-Z
+              </ToggleButton>
+              <ToggleButton type="radio" name="radio" value="numerical" onChange={handleRadioChange} >
+                Pokedex No.
+              </ToggleButton>
+          </ButtonGroup>
+        </Col>
+        </Row>
+      </Container> 
+      <Container> 
+          <Row>
+            {sortedPokemon.map(pokemon => {
+            return (
+            <Col xs={6} md={4} lg={3}>
+            <SingleCard key={pokemon.id} pokemon={pokemon} />
+            </Col>)}
+            )}
+          </Row>
+          </Container>  
     </div>
   );
 
 
 }
+
 export default PokemonCards;

@@ -1,11 +1,14 @@
+/* *{
+    font-family: 'Press Start 2P', cursive;
+}
+
 .modal {
-    height: 300px;
+    z-index: 1;
+    height: 400px;
     width: 300px;
     position: absolute;
     left: 50%;
     top: 50%; 
-    margin-left: -150px;
-    margin-top: -150px;
     background-color: white;
     color: black;
     text-align: center;
@@ -19,4 +22,4 @@
   
 .display-none {
     display: none;
-}
+} */

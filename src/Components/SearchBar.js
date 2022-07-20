@@ -3,7 +3,7 @@ import { styled, InputBase } from '@mui/material';
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     '& .MuiInputBase-input': {
-        paddingTop: '20px',
+        paddingTop: '40px',
         paddingBottom: '20px',
         paddingLeft: '50px',
         width: '100%',
@@ -14,10 +14,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchBar = (props) => {
-    
+  const query = props.query;
+
+
     return (
             <StyledInputBase
-              value={props.value}
+              query={query}
               placeholder="Search..."
               inputProps={{ 'aria-label': 'search' }}
               onChange={props.onChange}

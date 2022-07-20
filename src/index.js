@@ -6,14 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'react-bootstrap';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <ThemeProvider
+  breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+    >
     <Provider store={store}>
     <App />
     </Provider>
+    </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
