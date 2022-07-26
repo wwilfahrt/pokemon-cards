@@ -28,9 +28,8 @@ export default function addToDeckReducer(state = initialState, action) {
         }
         case REMOVE_CARD: {
             return { ...state,
-            myDeck: [ 
+            myDeck:
                 state.myDeck.filter(card => card !== action.payload)
-            ]
             }
         }
         default: 
